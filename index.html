@@ -1,50 +1,117 @@
 <!DOCTYPE html>
+<html>
 <head>
     <title>Site</title>
     <style>
         body {
             background-color: #2A2A2A;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
         .style-1 {
-            font-size: 200%;
+            font-size: 24px;
+            color: white;
+            animation: fadeIn 1s ease-in-out;
         }
+
         .style-2 {
             color: brown;
-            position: sticky;
-            font-size: 500%;
+            font-size: 48px;
+            animation: bounceIn 1s ease-in-out;
+        }
+
+        label {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        label:hover {
+            background-color: #2980b9;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        #selectedImage {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceIn {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
-<html>
 <body>
-        <h2 class="style-2">160 euros en 2 semaines</h2>
-        <p class="style-1">Faire 160 euros en 2 semaines, possible ?</p>
-        <label>
-            <input accept=".png, .jpeg" id="imageChoose" type="file" name="input-name" style="display: none;" />
-            <span>Select file</span>
-          </label>
-          <img src="" id="selectedImage">
+    <h2 class="style-2">160 euros en 2 semaines</h2>
+    <p class="style-1">Faire 160 euros en 2 semaines, possible ?</p>
+    <label for="imageChoose">Select file</label>
+    <input accept=".png, .jpeg" id="imageChoose" type="file" name="input-name" style="display: none;" />
+    <img src="" id="selectedImage">
 </body>
 <script>
     var input = document.getElementById("imageChoose");
-        var selected = document.getElementById("selectedImage");
+    var selected = document.getElementById("selectedImage");
 
-        input.onchange = e => {
-            var file = e.target.files[0];
-            var reader = new FileReader();
+    input.onchange = e => {
+        var file = e.target.files[0];
+        var reader = new FileReader();
 
-            reader.onload = readerEvent => {
-                var content = readerEvent.target.result; // Contenu du fichier
-                selected.src = content; // Définir la source de l'image
-            };
-
-            reader.readAsDataURL(file);
+        reader.onload = readerEvent => {
+            var content = readerEvent.target.result; // Contenu du fichier
+            selected.src = content; // Définir la source de l'image
         };
 
-        input.click();
+        reader.readAsDataURL(file);
+    };
 
-        function postImage() {
-            console.log("afoinafn")
-        }
+    input.click();
+
+    function postImage() {
+        console.log("afoinafn")
+    }
 </script>
-<html>
+</html>
