@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <title>Site</title>
+    <style>
+        body {
+            background-color: #2A2A2A;
+        }
+        .style-1 {
+            font-size: 200%;
+        }
+        .style-2 {
+            color: brown;
+            position: sticky;
+            font-size: 500%;
+        }
+    </style>
+</head>
+<html>
+<body>
+        <h2 class="style-2">160 euros en 2 semaines</h2>
+        <p class="style-1">Faire 160 euros en 2 semaines, possible ?</p>
+        <label>
+            <input accept=".png, .jpeg" id="imageChoose" type="file" name="input-name" style="display: none;" />
+            <span>Select file</span>
+          </label>
+          <img src="" id="selectedImage">
+</body>
+<script>
+    var input = document.getElementById("imageChoose");
+        var selected = document.getElementById("selectedImage");
+
+        input.onchange = e => {
+            var file = e.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = readerEvent => {
+                var content = readerEvent.target.result; // Contenu du fichier
+                selected.src = content; // Définir la source de l'image
+            };
+
+            reader.readAsDataURL(file);
+        };
+
+        input.click();
+
+        function postImage() {
+            console.log("afoinafn")
+        }
+</script>
+<html>
